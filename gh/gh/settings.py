@@ -14,6 +14,8 @@ MANAGERS = ADMINS
 
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('GH_DATABASE_URL'))}
 
+GOOGLE_ANALYTICS_ID = os.environ.get('GH_GOOGLE_ANALYTICS_ID', '')
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
@@ -115,6 +117,10 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'gh.context_processors.gh_settings',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
