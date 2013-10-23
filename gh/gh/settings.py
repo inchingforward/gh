@@ -1,10 +1,11 @@
 import os
 import dj_database_url
+from unipath import Path
 
 
 DEBUG = bool(os.environ.get('GH_DEBUG', ''))
 TEMPLATE_DEBUG = DEBUG
-BASE_DIR = os.path.dirname(__file__)
+PROJECT_DIR = Path(__file__).ancestor(2)
 
 ADMINS = (
     (os.environ.get('GH_ADMIN_NAME', ''), os.environ.get('GH_ADMIN_EMAIL')),
@@ -103,7 +104,7 @@ ROOT_URLCONF = 'gh.urls'
 WSGI_APPLICATION = 'gh.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(PROJECT_DIR, 'templates'),
 )
 
 INSTALLED_APPS = (
