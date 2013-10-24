@@ -1,12 +1,36 @@
+{% load static %}
 <!doctype html>
 {% block preamble %}{% endblock %}
 <html>
 <head>
     <title>Gateway Hackers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/gh.css' %}" media="screen">
 </head>
 <body>
 
+<div class="container">
+    <div class="navbar navbar-default ">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gateway Hackers</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
 {% block content %}{% endblock %}
+    </div>
+</div> <!-- /container -->
 
 {% if GOOGLE_ANALYTICS_ID %}
 <script>
@@ -17,9 +41,13 @@
 
   ga('create', 'UA-44927972-1', 'gatewayhackers.com');
   ga('send', 'pageview');
-
 </script>
 {% endif %}
+
+<script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+{% block js %}{% endblock %}
 
 </body>
 </html>

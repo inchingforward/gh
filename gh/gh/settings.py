@@ -5,7 +5,7 @@ from unipath import Path
 
 DEBUG = bool(os.environ.get('GH_DEBUG', ''))
 TEMPLATE_DEBUG = DEBUG
-PROJECT_DIR = Path(__file__).ancestor(2)
+PROJECT_PATH = Path(__file__).ancestor(2)
 
 ADMINS = (
     (os.environ.get('GH_ADMIN_NAME', ''), os.environ.get('GH_ADMIN_EMAIL')),
@@ -63,11 +63,11 @@ STATIC_ROOT = ''
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
+
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    STATIC_PATH,
 )
 
 # List of finder classes that know how to find static files in
@@ -104,7 +104,7 @@ ROOT_URLCONF = 'gh.urls'
 WSGI_APPLICATION = 'gh.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'templates'),
+    os.path.join(PROJECT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
