@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'south',
+    'posts',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
