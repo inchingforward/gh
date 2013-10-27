@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'south',
     'posts',
     'news',
+    'profiles',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
