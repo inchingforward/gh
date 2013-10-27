@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% load markup %}
+
+{% block content %}
+<div id="news">
+<h3>News</h3>
+{% for news_item in object_list %}
+    <h4>{{ news_item.title }}</h2>
+    <h5>{{ news_item.created|date:"F d, Y" }}</h3>
+    {{ news_item.details|markdown }}
+{% endfor %}
+</div>
+{% endblock %}

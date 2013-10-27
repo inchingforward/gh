@@ -1,5 +1,5 @@
 .content {
-    margin-top: 30px;
+
 }
 
 .navbar {
@@ -11,6 +11,10 @@
     margin-left: 15px;
 }
 
-#about {
-    width: 500px;
+#news h4 {
+    margin-top: 35px;
+}
+
+#news h5 {
+    color: #aaa;
 }

@@ -115,8 +115,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.markup',
     'south',
     'posts',
+    'news',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
