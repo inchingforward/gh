@@ -69,3 +69,20 @@ class Profile(models.Model):
             return self.user.first_name
         else:
             return self.user.username
+    
+    def has_projects(self):
+        return self.project_1_url or \
+               self.project_2_url or \
+               self.project_3_url or \
+               self.project_4_url or \
+               self.project_5_url
+
+    def has_elsewhere(self):
+        return self.elsewhere_1_url or \
+               self.elsewhere_2_url or \
+               self.elsewhere_3_url or \
+               self.elsewhere_4_url or \
+               self.elsewhere_5_url
+
+
+
