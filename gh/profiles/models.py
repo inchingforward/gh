@@ -7,13 +7,13 @@ class Profile(models.Model):
     show_email = models.BooleanField(default=False)
     use_gravatar = models.BooleanField(default=False)
     info = models.TextField(blank=True)
-    skills = models.TextField(blank=True)
-    interested_in_job_opportunities = models.BooleanField(default=False)
     
     # Professional
     company = models.TextField(blank=True)
     company_url = models.URLField(blank=True)
     job_title = models.TextField(blank=True)
+    skills = models.TextField(blank=True)
+    interested_in_job_opportunities = models.BooleanField(default=False)
     
     # Social Networks
     bitbucket_url = models.URLField(blank=True)
@@ -55,6 +55,12 @@ class Profile(models.Model):
     
     def get_absolute_url(self):
         return reverse('profile', kwargs={'pk': self.pk})
+    
+    def get_short_name(self):
+        if self.user.first_name:
+            return self.user.first_name
+        else:
+            return self.user.username
     
     def get_full_name(self):
         if self.user.first_name and self.user.last_name:

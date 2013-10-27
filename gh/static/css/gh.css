@@ -26,3 +26,34 @@
     margin-top: 0;
     padding-top: 0;
 }
+
+#profile {
+    margin-bottom: 50px;
+}
+
+#profile h2 {
+    margin-bottom: 5px;
+}
+
+#profile-professional p{
+    margin: 0;
+}
+
+#profile-gravatar {
+    margin-top: 30px;
+    margin-left: 45px;
+}
+
+.profile-social {
+    margin-top: 25px;
+}
+
+#profile-info {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-skills {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

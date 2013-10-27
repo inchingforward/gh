@@ -1,6 +1,71 @@
 {% extends "layout.html" %}
+{% load gravatar %}
 {% load markup %}
 
 {% block content %}
-<h3>{{ object.get_full_name }}</h3>
+
+<div id="profile">
+    <div class="row">
+        <div class="col-md-2">
+            <div id="profile-gravatar">
+                {% if object.use_gravatar %}
+                    {% gravatar object.user.email %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-10">
+            <h2>{{ object.get_full_name }}</h2>
+            <div id="profile-professional">
+                <p>
+                    {% if object.job_title %}
+                    {{ object.job_title }}{% if object.company %},
+                    {% if object.company_url %}<a href="{{ object.company_url }}">{% endif %}{{ object.company }}{% if object.company_url %}</a>{% endif %}{% endif %}
+                    {% endif %}
+                </p>
+                {% if object.show_email %}<p><a href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a></p>{% endif %}
+            </div>
+        
+            <p class="profile-social">
+                {% if object.bitbucket_url %}<a href="{{ object.bitbucket_url }}" title="Bitbucket"><i class="fa fa-bitbucket fa-lg"></i></a>{% endif %}
+                {% if object.dribbble_url %}<a href="{{ object.dribbble_url }}" title="Dribbble"><i class="fa fa-dribbble fa-lg"></i></a>{% endif %}
+                {% if object.facebook_url %}<a href="{{ object.facebook_url }}" title="Facebook"><i class="fa fa-facebook fa-lg"></i></a>{% endif %}
+                {% if object.github_url %}<a href="{{ object.github_url}}" title="Github"><i class="fa fa-github fa-lg"></i></a>{% endif %}
+                {% if object.google_plus_url %}<a href="{{ object.google_plus_url }}" title="Google+"><i class="fa fa-google-plus fa-lg"></i></a>{% endif %}
+                {% if object.linked_in_url %}<a href="{{ object.linked_in_url }}" title="LinkedIn"><i class="fa fa-linkedin fa-lg"></i></a>{% endif %}
+                {% if object.stack_overflow_url %}<a href="{{ object.stack_overflow_url }}" title="Stack Overflow"><i class="fa fa-stack-overflow fa-lg"></i></a>{% endif %}
+                {% if object.tumblr_url %}<a href="{{ object.tumblr_url }}" title="Tumblr"><i class="fa fa-tumblr fa-lg"></i></a>{% endif %}
+                {% if object.twitter_url %}<a href="{{ object.twitter_url }}" title="Twitter"><i class="fa fa-twitter fa-lg"></i></a>{% endif %}
+            </p>
+        
+            {% if profile.info %}
+            <div id="profile-info">
+                {{ object.info|markdown }}
+            </div>
+            {% endif %}
+        
+            {% comment %}<p class="profile-skills">Skills: {{ object.skills }}</p>{% endcomment %}
+        
+            <h4>Projects</h4>
+            <dl>
+                {% if object.project_1_name %}<dt><a href="{{ object.project_1_url }}">{{ object.project_1_name }}</a></dt>{% endif %}
+                {% if object.project_2_name %}<dt><a href="{{ object.project_2_url }}">{{ object.project_2_name }}</a></dt>{% endif %}
+                {% if object.project_3_name %}<dt><a href="{{ object.project_3_url }}">{{ object.project_3_name }}</a></dt>{% endif %}
+                {% if object.project_4_name %}<dt><a href="{{ object.project_4_url }}">{{ object.project_4_name }}</a></dt>{% endif %}
+                {% if object.project_5_name %}<dt><a href="{{ object.project_5_url }}">{{ object.project_5_name }}</a></dt>{% endif %}
+            </dl>
+        
+            <h4>Elsewhere</h4>
+            <dl>
+                {% if object.elsewhere_1_name %}<dt><a href="{{ object.elsewhere_1_url }}">{{ object.elsewhere_1_name }}</a></dt>{% endif %}
+                {% if object.elsewhere_2_name %}<dt><a href="{{ object.elsewhere_2_url }}">{{ object.elsewhere_2_name }}</a></dt>{% endif %}
+                {% if object.elsewhere_3_name %}<dt><a href="{{ object.elsewhere_3_url }}">{{ object.elsewhere_3_name }}</a></dt>{% endif %}
+                {% if object.elsewhere_4_name %}<dt><a href="{{ object.elsewhere_4_url }}">{{ object.elsewhere_4_name }}</a></dt>{% endif %}
+                {% if object.elsewhere_5_name %}<dt><a href="{{ object.elsewhere_5_url }}">{{ object.elsewhere_5_name }}</a></dt>{% endif %}
+            </dl>
+        
+            {% if object.interested_in_job_opportunities %}<em>{{ object.get_short_name }} is interested in job opportunities.</em>{% endif %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
