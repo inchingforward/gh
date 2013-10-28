@@ -14,5 +14,20 @@ _|_|_|        _|      _|_|_|_|
 {% endblock %}
 
 {% block content %}
-<h3>Coming soon!</h3>
+
+{% if posts %}
+    <div id="post-list">
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+                    <h2>by <a href="/profiles/{{ post.user.username }}">{{ post.user.username }}</a> {{ post.created|timesince }} ago</h2>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+<h3>Nothing yet</h3>
+{% endif %}
+
 {% endblock %}
