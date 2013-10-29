@@ -10,4 +10,9 @@
     {{ news_item.details|markdown }}
 {% endfor %}
 </div>
+
+{% if GOOGLE_ANALYTICS_ID %}
+    {% include "analytics.html" %}
+{% endif %}
+
 {% endblock %}

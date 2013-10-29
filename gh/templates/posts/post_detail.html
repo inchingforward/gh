@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h3><a href="{{ object.url }}">{{ object.title }}</a></h3>
+<p>by <a href="/profiles/{{ object.user.username }}">{{ object.user.username }}</a> {{ object.created|timesince }} ago</p>
+
+{% endblock %}

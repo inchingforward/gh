@@ -1,11 +1,15 @@
 import requests
 from BeautifulSoup import BeautifulSoup
 from django.http import HttpResponse
+from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
 from .forms import PostForm
 from .models import Post
 
+
+class PostDetailView(DetailView):
+    model = Post
 
 class PostCreate(CreateView):
     form_class = PostForm
