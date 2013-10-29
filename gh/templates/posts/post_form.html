@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Submit</h2>
+
+<form class="form-inline post-form" action="" method="post">
+{% csrf_token %}
+
+{{ form.non_field_errors }}
+
+<table width="100%">
+<tr>
+    <th><label for="id_url">Url:</label></th>
+    <td>
+        <input id="id_url" maxlength="200" name="url" type="text" class="form-control" placeholder="URL" />
+        {{ form.url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_title">Title:</label></th>
+    <td nowrap="nowrap">
+        <input id="id_title" name="title" type="text" class="form-control" placeholder="Enter a title or click the Fetch button" />
+        <button type="button" id="fetch_button" class="btn btn-default" data-loading-text="Fetching..." onClick="fetchTitle();">Fetch</button>
+         {{ form.tile.errors }}
+    </td>
+</tr>
+<tr><td colspan="2">&nbsp;</td></tr>
+<tr>
+    <th>&nbsp;</th>
+    <td><button type="submit" class="btn btn-primary">Submit</button></td>
+</table>
+</form>
+
+{% block js %}
+<script type="text/javascript">
+$(function() {
+    $("#id_url").focus();
+});
+</script>
+{% endblock %}
+
+{% endblock %}

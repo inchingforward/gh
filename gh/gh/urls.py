@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^about/', TemplateView.as_view(template_name="about.html")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^news/', include('news.urls')),
+    url(r'^posts/', include('posts.urls')),
     url(r'^profiles/', include('profiles.urls')),
 )
