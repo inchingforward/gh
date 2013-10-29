@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^news/', include('news.urls')),
     url(r'^posts/', include('posts.urls')),
     url(r'^profiles/', include('profiles.urls')),
+    url(r'^comments/', include('django.contrib.comments.urls')),
 )

@@ -1,0 +1,12 @@
+{% extends "comments/base.html" %}
+
+{% block title %}Thanks for commenting{% endblock %}
+{% block head %}
+    <meta http-equiv="Refresh" content="0; url={{ comment.content_object.get_absolute_url }}#c{{ comment.id }}" />
+{% endblock %}
+{% block content %}
+    <h2>Thanks for commenting</h2>
+    <p>Your comment has been submitted.</p>
+
+    <p><a href="{{ comment.content_object.get_absolute_url }}#c{{ comment.id }}">Back to the article</a></p>
+{% endblock %}

@@ -81,4 +81,53 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+#post-detail p {
+    margin: 0;
+    font-size: 12px;
+}
+
+#post-detail h3 {
+    margin-bottom: 4px;
+}
+
+#form-comment {
+    width: 50%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.comments {
+    margin-top: 40px;
+}
+
+.comments ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comment {
+    margin-top: 15px;
+}
+
+.comment_reply_link {
+    font-size: 12px;
+}
+
+.comment_info {
+    font-size: 12px;
+    color: #999;
+}
+
+.comment_info a {
+    color: #999;
+}
+
+.comment_info a:hover {
+    color: #444;
+    text-decoration: underline;
+}
+
+.comment_text {
+    
 }

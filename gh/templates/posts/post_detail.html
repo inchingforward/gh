@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
+{% load threadedcomments_tags %}
 
 {% block content %}
 
+<div id="post-detail">
 <h3><a href="{{ object.url }}">{{ object.title }}</a></h3>
 <p>by <a href="/profiles/{{ object.user.username }}">{{ object.user.username }}</a> {{ object.created|timesince }} ago</p>
+</div>
+
+{% render_comment_form for object %}
+{% render_comment_list for object %}
+
 
 {% endblock %}

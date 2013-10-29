@@ -117,6 +117,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'django_gravatar',
+    'threadedcomments',
+    'django.contrib.comments',
     'south',
     'posts',
     'news',
@@ -158,3 +160,5 @@ LOGGING = {
         },
     }
 }
+
+COMMENTS_APP = 'threadedcomments'

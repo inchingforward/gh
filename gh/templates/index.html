@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% load markup %}
+{% load threadedcomments_tags %}
 
 {% block preamble %}
 <!--
@@ -20,8 +21,11 @@ _|_|_|        _|      _|_|_|_|
         <ul>
             {% for post in posts %}
                 <li>
+                    {% get_comment_count for post as comment_count %}
                     <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-                    <h2>by <a href="/profiles/{{ post.user.username }}">{{ post.user.username }}</a> {{ post.created|timesince }} ago <a href="{{ post.get_absolute_url }}">details</a></h2>
+                    <h2>by <a href="/profiles/{{ post.user.username }}">{{ post.user.username }}</a> 
+                        {{ post.created|timesince }} ago
+                        &nbsp;<a href="{{ post.get_absolute_url }}">{% if comment_count %}{{ comment_count }} comments{% else %}details{% endif %}</a></h2>
                 </li>
             {% endfor %}
         </ul>
