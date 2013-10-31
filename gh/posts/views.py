@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy
+from braces.views import LoginRequiredMixin
 from .forms import PostForm
 from .models import Post
 
@@ -11,7 +12,7 @@ from .models import Post
 class PostDetailView(DetailView):
     model = Post
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
     fields = ['url', 'title', 'details']
