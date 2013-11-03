@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div id="login" class="col-md-6 col-md-offset-3">
 <h3>Login</h3>
 
 {% if user.is_authenticated %}
@@ -29,6 +30,7 @@
         </table>
     </form>
 {% endif %}
+</div>
 
 {% endblock %}
 
