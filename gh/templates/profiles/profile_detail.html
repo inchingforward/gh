@@ -14,8 +14,8 @@
             </div>
         </div>
         <div class="col-md-10">
-            <h2>{{ object.get_full_name }}</h2>
-            
+            <h2>{{ object.get_full_name }} {% ifequal user object.user %}<button class="btn btn-primary btn-xs" onClick="editProfile();">Edit</button>{% endifequal %}</h2>
+
             <div id="profile-professional">
                 <p>
                     {% if object.job_title %}
@@ -72,5 +72,13 @@
         </div>
     </div>
 </div>
+
+{% ifequal user object.user %}
+<script type="text/javascript">
+function editProfile() {
+    window.location.href = "/profiles/update/{{ object.user.pk }}";
+}
+</script>
+{% endifequal %}
 
 {% endblock %}

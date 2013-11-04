@@ -1,0 +1,249 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="profile-edit">
+<form class="form-inline" method="post" action="">
+{% csrf_token %}
+
+<h2>Your Profile</h2>
+
+<span class="help-block">All fields are optional--fill in only what you are comfortable with.</span>
+
+{{ form.non_field_errors }}
+
+<table>
+<tr>
+    <th valign="top"><label for="id_info">Info</label></th>
+    <td colspan="2">
+        <textarea class="form-control" cols="40" id="id_info" name="info" rows="10" placeholder="Information about yourself.  Markdown supported.">{{ object.info }}</textarea>
+        {{ form.info.errors }}
+    </td>
+</tr>
+<tr>
+    <th>&nbsp;</th>
+    <td colspan="2">
+        {{ form.show_email }} Show Email
+        {{ form.show_email.errors }}
+    </td>
+</tr>
+<tr>
+    <th>&nbsp;</th>
+    <td colspan="2">
+        {{ form.use_gravatar }} Use <a href="http://gravatar.com">Gravatar</a>
+        {{ form.use_gravatar.errors }}
+    </td>
+</tr>
+
+<tr><td colspan="2"><h3>Professional</h3></tr></tr>
+<tr>
+    <th><label for="id_company">Company</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_company" name="company" type="text" value="{{ object.company }}" />
+        {{ form.company.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_company_url">Company url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_company_url" maxlength="200" name="company_url" type="text" value="{{ object.company_url }}" />
+        {{ form.company_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_job_title">Job title</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_job_title" name="job_title" type="text" value="{{ object.job_title }}">
+        {{ form.job_title.errors }}
+    </td>
+</tr>
+<tr>
+    <th>&nbsp;</th>
+    <td colspan="2">
+        {{ form.interested_in_job_opportunities }} Interested in job opportunities
+        {{ form.interested_in_job_opportunities.errors }}
+    </td>
+</tr>
+<tr><td colspan="3"><h3>Social Networks</h3><span class="help-block">Enter the fully-qualified url for the display page of an account you want to show.</span></tr></tr>
+<tr>
+    <th><label for="id_bitbucket_url"><a href="https://bitbucket.org">Bitbucket</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_bitbucket_url" maxlength="200" name="bitbucket_url" type="text" value="{{ object.bitbucket_url }}" />
+        {{ form.bitbucket_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_dribbble_url"><a href="http://dribbble.com">Dribbble</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_dribbble_url" maxlength="200" name="dribbble_url" type="text" value="{{ object.dribbble_url }}" />
+        {{ form.dribbble_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_facebook_url"><a href="https://www.facebook.com">Facebook</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_facebook_url" maxlength="200" name="facebook_url" type="text" value="{{ object.facebook_url }}" />
+        {{ form.facebook_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_github_url"><a href="https://github.com">Github</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_github_url" maxlength="200" name="github_url" type="text" value="{{ object.github_url }}" />
+        {{ form.github_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_google_plus_url"><a href="https://plus.google.com/">Google +</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_google_plus_url" maxlength="200" name="google_plus_url" type="text" value="{{ object.google_plus_url }}" />
+        {{ form.google_plus_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_linked_in_url"><a href="http://www.linkedin.com">LinkedIn</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_linked_in_url" maxlength="200" name="linked_in_url" type="text" value="{{ object.linked_in_url }}" />
+        {{ form.linked_in_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_stack_overflow_url"><a href="http://stackoverflow.com">Stack Overflow</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_stack_overflow_url" maxlength="200" name="stack_overflow_url" type="text" value="{{ object.stack_overflow_url }}" />
+        {{ form.stack_overflow_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_tumblr_url"><a href="https://www.tumblr.com">Tumblr</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_tumblr_url" maxlength="200" name="tumblr_url" type="text" value="{{ object.tumblr_url }}" />
+        {{ form.tumblr_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_twitter_url"><a href="https://twitter.com">Twitter</a> url</label></th>
+    <td colspan="2">
+        <input class="form-control" id="id_twitter_url" maxlength="200" name="twitter_url" type="text" value="{{ object.twitter_url }}" />
+        {{ form.twitter_url.errors }}
+    </td>
+</tr>
+<tr><td colspan="3"><h3>Projects</h3><span class="help-block">List the location of any projects you'd like to show off.</tr></tr>
+<tr>
+    <th><label for="id_project_1_name">Project 1 name</label></th>
+    <td>
+        <input class="form-control" id="id_project_1_name" name="project_1_name" type="text" placeholder="Name 1" value="{{ object.project_1_name }}" />
+        {{ form.project_1_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_project_1_url" maxlength="200" name="project_1_url" type="text" placeholder="URL 1" value="{{ object.project_1_url }}" />
+        {{ form.project_1_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_project_2_name">Project 2 name</label></th>
+    <td>
+        <input class="form-control" id="id_project_2_name" name="project_2_name" type="text" placeholder="Name 2" value="{{ object.project_2_name }}" />
+        {{ form.project_2_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_project_2_url" maxlength="200" name="project_2_url" type="text" placeholder="URL 2" value="{{ object.project_2_url }}" />
+        {{ form.project_2_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_project_3_name">Project 3 name</label></th>
+    <td>
+        <input class="form-control" id="id_project_3_name" name="project_3_name" type="text" placeholder="Name 3" value="{{ object.project_3_name }}" />
+        {{ form.project_3_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_project_3_url" maxlength="200" name="project_3_url" type="text" placeholder="URL 3" value="{{ object.project_3_url }}" />
+        {{ form.project_3_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_project_4_name">Project 4 name</label></th>
+    <td>
+        <input class="form-control" id="id_project_4_name" name="project_4_name" type="text" placeholder="Name 4" value="{{ object.project_4_name }}" />
+        {{ form.project_4_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_project_4_url" maxlength="200" name="project_4_url" type="text" placeholder="URL 4" value="{{ object.project_4_url }}" />
+        {{ form.project_4_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_project_5_name">Project 5 name</label></th>
+    <td>
+        <input class="form-control" id="id_project_5_name" name="project_5_name" type="text" placeholder="Name 5" value="{{ object.project_5_name }}" />
+        {{ form.project_5_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_project_5_url" maxlength="200" name="project_5_url" type="text" placeholder="URL 5" value="{{ object.project_5_url }} "/>
+        {{ form.project_5_url.errors }}
+    </td>
+</tr>
+<tr><td colspan="3"><h3>Elsewhere on the Web</h3><span class="help-block">Other places to find you on the web.</span></tr></tr>
+<tr>
+    <th><label for="id_elsewhere_1_name">Elsewhere 1 name</label></th>
+    <td>
+        <input class="form-control" id="id_elsewhere_1_name" name="elsewhere_1_name" type="text" placeholder="Name 1" value="{{ object.elsewhere_1_name }}" />
+        {{ form.elsewhere_1_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_elsewhere_1_url" maxlength="200" name="elsewhere_1_url" type="text" placeholder="URL 1" value="{{ object.elsewhere_1_url }}" />
+        {{ form.elsewhere_1_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_elsewhere_2_name">Elsewhere 2 name</label></th>
+    <td>
+        <input class="form-control" id="id_elsewhere_2_name" name="elsewhere_2_name" type="text" placeholder="Name 2" value="{{ object.elsewhere_2_name }}" />
+        {{ form.elsewhere_2_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_elsewhere_2_url" maxlength="200" name="elsewhere_2_url" type="text" placeholder="URL 2" value="{{ object.elsewhere_2_url }}" />
+        {{ form.elsewhere_2_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_elsewhere_3_name">Elsewhere 3 name</label></th>
+    <td>
+        <input class="form-control" id="id_elsewhere_3_name" name="elsewhere_3_name" type="text" placeholder="Name 3" value="{{ object.elsewhere_3_name }}" />
+        {{ form.elsewhere_3_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_elsewhere_3_url" maxlength="200" name="elsewhere_3_url" type="text" placeholder="URL 3" value="{{ object.elsewhere_3_url }}" />
+        {{ form.elsewhere_3_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_elsewhere_4_name">Elsewhere 4 name</label></th>
+    <td>
+        <input class="form-control" id="id_elsewhere_4_name" name="elsewhere_4_name" type="text" placeholder="Name 4" value="{{ object.elsewhere_4_name }}" />
+        {{ form.elsewhere_4_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_elsewhere_4_url" maxlength="200" name="elsewhere_4_url" type="text" placeholder="URL 4" value="{{ object.elsewhere_4_url }}" />
+        {{ form.elsewhere_4_url.errors }}
+    </td>
+</tr>
+<tr>
+    <th><label for="id_elsewhere_5_name">Elsewhere 5 name</label></th>
+    <td>
+        <input class="form-control" id="id_elsewhere_5_name" name="elsewhere_5_name" type="text" placeholder="Name 5" value="{{ object.elsewhere_5_name }}" />
+        {{ form.elsewhere_5_name.errors }}
+    </td>
+    <td>
+        <input class="form-control" id="id_elsewhere_5_url" maxlength="200" name="elsewhere_5_url" type="text" placeholder="URL 5" value="{{ object.elsewhere_5_url }}" />
+        {{ form.elsewhere_5_url.errors }}
+    </td>
+</tr>
+<tr><td colspan="3">&nbsp;</td></tr>
+<tr>
+    <td colspan="3" align="center"><button class="btn btn-primary" type="submit">Save</button></td>
+</tr>
+</table>
+</form>
+</div>
+{% endblock %}

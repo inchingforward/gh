@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 
 class Profile(models.Model):
@@ -54,7 +55,7 @@ class Profile(models.Model):
         return self.user.username
     
     def get_absolute_url(self):
-        return reverse('profile', kwargs={'pk': self.pk})
+        return reverse('profile-detail', kwargs={'username': self.user.username})
     
     def get_short_name(self):
         if self.user.first_name:
