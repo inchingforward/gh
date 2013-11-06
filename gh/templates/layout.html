@@ -12,6 +12,7 @@
 </head>
 <body>
 
+<div id="wrap">
 <div class="container">
     <div class="navbar navbar-default ">
         <div class="navbar-header">
@@ -25,7 +26,6 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 {% if user.is_authenticated %}<li><a href="/posts/submit/">Submit</a></li>{% endif %}
-                <li><a href="/news/">News</a></li>
                 <li><a href="/about/">About</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
@@ -47,6 +47,13 @@
 {% block content %}{% endblock %}
     </div>
 </div> <!-- /container -->
+</div> <!-- /wrap -->
+
+<div id="footer">
+  <div class="container">
+    <p class="text-muted credit pull-right"><a href="/about/">About</a> <a href="/news/">News</a></p>
+  </div>
+</div>
 
 <script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>

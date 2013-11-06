@@ -1,5 +1,15 @@
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+.container .credit {
+  margin: 10px 0;
+}
+
 .content {
-    padding-bottom: 40px;
+    padding-bottom: 0;
 }
 
 .navbar {
@@ -9,6 +19,25 @@
 
 .content {
     margin-left: 15px;
+    padding-bottom: 20px;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -40px;
+  /* Pad bottom by footer height */
+  padding: 0 0 40px;
+}
+
+#footer {
+  height: 40px;
+}
+
+#footer a {
+    color: #777;
+    margin-left: 20px;
 }
 
 #about h3 {
