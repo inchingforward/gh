@@ -28,12 +28,15 @@ def fetch_url_title(request):
         url = request.GET.get('url', '')
         if url:
             result = requests.get(url)
-            if result and result.status_code == 200:
-                soup = BeautifulSoup(result.content)
-                if soup.title:
-                    title = soup.title.string
+            if result:
+                if result.status_code == 200:
+                    soup = BeautifulSoup(result.content)
+                    if soup.title:
+                        title = soup.title.string
+            else:
+                title = "Error: server returned status %s" % result.status_code
     except Exception as e:
-        print 'unexpected fetch_url_title error: %s' % e
+        title = "Unexpected error"
     
     return HttpResponse(title)
 
