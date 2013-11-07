@@ -1,0 +1,10 @@
+# The following environment vars need to be set in order 
+# for Gateway Hackers to run:
+
+export GH_SECRET_KEY='secret'
+export GH_DEBUG='True'
+
+export GH_DATABASE_URL='yourdburl'
+
+export GH_ADMIN_NAME='Admin Email'
+export GH_ADMIN_EMAIL='admin@youremail.com'
