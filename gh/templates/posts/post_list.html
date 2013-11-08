@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% load markup %}
+{% load threadedcomments_tags %}
+
+{% block preamble %}
+{% if page_obj.number == 1 %}
+<!--
+
+  _|_|_|  _|_|_|_|_|  _|        
+_|            _|      _|        
+  _|_|        _|      _|        
+      _|      _|      _|        
+_|_|_|        _|      _|_|_|_|
+
+-->
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if object_list %}
+    <div id="post-list">
+        <ul>
+            {% for post in object_list %}
+                <li>
+                    {% get_comment_count for post as comment_count %}
+                    <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+                    <h2>by <a href="/profiles/{{ post.user.username }}">{{ post.user.username }}</a> 
+                        {{ post.created|timesince }} ago
+                        &nbsp;<a href="{{ post.get_absolute_url }}">{% if comment_count %}{{ comment_count }} comments{% else %}details{% endif %}</a></h2>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <p id="post-pager">
+            {% if page_obj.has_previous %}
+                <a class="pager-prev" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-arrow-circle-o-left"></i> Page {{ page_obj.previous_page_number }}</a> 
+            {% endif %}
+            
+            {% if page_obj.has_next %}
+                <a class="pager-next" href="?page={{ page_obj.next_page_number }}">Page {{ page_obj.next_page_number }} <i class="fa fa-arrow-circle-o-right"></i></a>
+            {% endif %}
+        </p>
+    </div>
+{% else %}
+<h3>Nothing yet</h3>
+{% endif %}
+
+{% if GOOGLE_ANALYTICS_ID %}
+    {% include "analytics.html" %}
+{% endif %}
+
+{% endblock %}

@@ -1,9 +1,10 @@
 from django.conf.urls import patterns, url, include
-from .views import PostCreate, PostDetailView
+from .views import PostCreate, PostDetailView, PostListView
 
 
 urlpatterns = patterns('',
     url(r'^submit/$', PostCreate.as_view(), name='post-add'),
     url(r'^fetchtitle$', 'posts.views.fetch_url_title', name='fetch-url-title'),
     url(r'^(?P<pk>\d+)/$', PostDetailView.as_view(), name='post-details'),
+    url(r'^$', PostListView.as_view(), name='post-list')
 )

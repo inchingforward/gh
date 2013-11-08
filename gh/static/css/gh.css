@@ -191,3 +191,11 @@ body {
 #profile-edit input[type="checkbox"] {
     margin-top: 12px;
 }
+
+#post-pager {
+    margin-top: 30px;
+}
+
+.pager-prev {
+    padding-right: 30px;
+}

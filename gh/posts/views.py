@@ -3,6 +3,7 @@ from BeautifulSoup import BeautifulSoup
 from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 from django.core.urlresolvers import reverse_lazy
 from braces.views import LoginRequiredMixin
 from .forms import PostForm
@@ -21,6 +22,10 @@ class PostCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(PostCreate, self).form_valid(form)
+
+class PostListView(ListView):
+    model = Post
+    paginate_by = 30
 
 def fetch_url_title(request):
     title = ''
