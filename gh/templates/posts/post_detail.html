@@ -11,5 +11,14 @@
 {% render_comment_form for object %}
 {% render_comment_list for object %}
 
+{% endblock %}
 
+{% block js %}
+<script type="text/javascript">
+    function show_reply_form(commentId) {
+        $('#id_parent').val(commentId);
+        $('#form-comment').insertAfter($('#a_' + commentId));
+        $('#id_comment').focus();
+    }
+</script>
 {% endblock %}

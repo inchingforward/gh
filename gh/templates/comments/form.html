@@ -3,11 +3,12 @@
     <form action="/comments/post/" method="post">
         {% csrf_token %}
         
-        <input type="hidden" name="id_name" name="user_name" value="{{ user.username }}" />
-        <input type="hidden" name="id_email" name="email" value="" />
-        <input type="hidden" name="id_url" name="url" value="" />
-        <input type="hidden" name="id_title" name="title" value="" />
-        <input type="hidden" name="next" value="{{ object.get_absolute_url }}" />
+        <input type="hidden" id="id_name" name="user_name" value="{{ user.username }}" />
+        <input type="hidden" id="id_email" name="email" value="" />
+        <input type="hidden" id="id_url" name="url" value="" />
+        <input type="hidden" id="id_title" name="title" value="" />
+        <input type="hidden" id="id_parent" name="parent" value="" />
+        <input type="hidden" id="next" name="next" value="{{ object.get_absolute_url }}" />
         
         {{ form.content_type }}
         {{ form.object_pk }}

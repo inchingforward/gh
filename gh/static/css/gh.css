@@ -112,7 +112,7 @@ body {
 }
 
 #post-detail p {
-    margin: 0;
+    margin: 0 0 40px 0;
     font-size: 12px;
 }
 
@@ -122,8 +122,7 @@ body {
 
 #form-comment {
     width: 50%;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 10px;
 }
 
 .comments {
@@ -137,10 +136,6 @@ body {
 
 .comment {
     margin-top: 15px;
-}
-
-.comment_reply_link {
-    font-size: 12px;
 }
 
 .comment_info {
@@ -157,8 +152,9 @@ body {
     text-decoration: underline;
 }
 
-.comment_text {
-    
+.comment_li {
+    list-style: none;
+    padding-left: 30px;
 }
 
 #login-form {
