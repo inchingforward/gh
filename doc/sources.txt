@@ -2,3 +2,4 @@ http://www.bizjournals.com/stlouis/news
 http://www.stltoday.com/search/?l=25&skin=/branding/stltoday/news&sd=desc&s=start_time&f=html&q=technology
 https://www.stlbeacon.org/#!/list/AND[CATEGORY[innovation_stl]]
 http://www.reddit.com/r/stlouis+programming
+http://techli.com/news/
