@@ -9,7 +9,11 @@
 </div>
 
 {% render_comment_form for object %}
-{% render_comment_list for object %}
+
+<div class="row">
+  <div class="col-md-8">{% render_comment_list for object %}</div>
+  <div class="col-md-4"></div>
+</div>
 
 {% endblock %}
 
