@@ -1,3 +1,4 @@
+from urlparse import urlparse
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -22,6 +23,9 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return "/posts/%s/" % self.id
+    
+    def get_domain(self):
+        return urlparse(self.url).netloc
     
     def save(self, *args, **kwargs):
         super(Post, self).save(*args, **kwargs)
