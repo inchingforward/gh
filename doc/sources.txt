@@ -6,3 +6,4 @@ http://techli.com/news/
 https://news.ycombinator.com/newest
 http://monocle.io
 http://www.techmeme.com/river
+http://www.altdevblogaday.com
