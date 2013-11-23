@@ -25,7 +25,7 @@ class PostCreate(LoginRequiredMixin, CreateView):
 
 class PostListView(ListView):
     model = Post
-    paginate_by = 30
+    paginate_by = 20
 
 def fetch_url_title(request):
     title = ''
