@@ -73,12 +73,14 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block js %}
 {% ifequal user object.user %}
 <script type="text/javascript">
 function editProfile() {
-    window.location.href = "/profiles/update/{{ object.user.pk }}";
+    window.location.href = "{% url 'profile-edit' %}";
 }
 </script>
 {% endifequal %}
-
 {% endblock %}

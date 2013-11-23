@@ -120,6 +120,12 @@ INSTALLED_APPS = (
     'threadedcomments',
     'django.contrib.comments',
     'south',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+#    'allauth.socialaccount.providers.twitter',
+    'bootstrapform',
     'posts',
     'news',
     'profiles',
@@ -127,7 +133,15 @@ INSTALLED_APPS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    'allauth.account.context_processors.account',
+    'allauth.socialaccount.context_processors.socialaccount',
     'gh.context_processors.gh_settings',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -167,6 +181,8 @@ TWITTER_CONSUMER_KEY = os.environ.get('GH_TWITTER_CONSUMER_KEY')
 TWITTER_CONSUMER_SECRET = os.environ.get('GH_TWITTER_CONSUMER_SECRET')
 TWITTER_ACCESS_TOKEN = os.environ.get('GH_TWITTER_ACCESS_TOKEN')
 TWITTER_ACCESS_TOKEN_SECRET = os.environ.get('GH_TWITTER_ACCESS_TOKEN_SECRET')
+
+ACCOUNT_ADAPTER = 'gh.adapters.AccountAdapter'
 
 if not DEBUG:
     CSRF_COOKIE_SECURE = True

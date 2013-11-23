@@ -19,7 +19,12 @@ class ProfileUpdateView(LoginRequiredMixin,UpdateView):
     def get_object(self):
         print self.kwargs
         print self.request.user
-        return get_object_or_404(Profile, user=self.request.user)
+        try:
+            return Profile.objects.get(user=self.request.user)
+        except Profile.DoesNotExist:
+            profile = Profile(user=self.request.user)
+            profile.save()
+            return profile
     
     def form_valid(self, form):
         form.instance.user = self.request.user

@@ -201,3 +201,40 @@ body {
 .pager-prev {
     padding-right: 30px;
 }
+
+table.sign-up, table.log-in {
+    margin: 24px 0 24px 0;
+    width: 90%;
+}
+
+#signup-form {
+    padding-top: 12px;
+}
+
+#login-form {
+    padding-top: 12px;
+}
+
+.social-login-buttons {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.social-login-divider {
+    margin: 44px 0 24px 0;
+    height: 1px; 
+    background-color: #ccc; 
+    text-align: center;
+}
+
+.social-login-divider-text {
+    background-color: white; 
+    position: relative; 
+    top: -0.5em; 
+    padding: 0 15px 0 15px; 
+    color: #333;
+}
+
+.btn-login {
+    width: 200px;
+}
