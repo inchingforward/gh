@@ -8,7 +8,7 @@ TEMPLATE_DEBUG = DEBUG
 PROJECT_PATH = Path(__file__).ancestor(2)
 
 ADMINS = (
-    (os.environ.get('GH_ADMIN_NAME', ''), os.environ.get('GH_ADMIN_EMAIL')),
+    (os.environ.get('GH_ADMIN_NAME', ''), os.environ.get('GH_ADMIN_NAME')),
 )
 
 MANAGERS = ADMINS
@@ -187,3 +187,5 @@ ACCOUNT_ADAPTER = 'gh.adapters.AccountAdapter'
 if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
