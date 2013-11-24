@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^posts/', include('posts.urls')),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^comments/', include('django.contrib.comments.urls')),
+    (r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
     (r'^accounts/', include('allauth.urls')),
 )
