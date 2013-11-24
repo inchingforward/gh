@@ -13,7 +13,7 @@
 
         <p>If you have not created an account yet, please
         <a href="{{ signup_url }}">sign up</a> first or log in with one of the 
-        third-party logins below.</p>
+        <a href="#sociallogins">third-party logins below</a>.</p>
 
         <form id="login-form" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}

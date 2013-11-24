@@ -8,7 +8,9 @@
     <div class="col-md-6 col-md-offset-3">
         <h2>Sign Up</h2>
 
-        <p>Already have an account? Then please <a href="{{ login_url }}">log in</a>.</p>
+        <p>Already have an account? Then please <a href="{{ login_url }}">log in</a>.  If you 
+        don't want to create an account, you can sign in using one of the 
+        <a href="#sociallogins">third-party logins below</a>.</p>
         
         <form id="signup-form" method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}
