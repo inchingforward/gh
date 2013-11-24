@@ -2,24 +2,59 @@ import requests
 from lxml import html
 
 
-SITE_LINKS = (
-    ('St. Louis Business Journal', 'http://www.bizjournals.com/stlouis/news', 'li.object_subtype_blog_post h4 a', True),
-    ('Reddit', 'http://www.reddit.com/r/stlouis+programming', 'div.thing div.entry a.title', False),
-    ('Hacker News', 'http://news.ycombinator.com', 'td.title a', False),
-    ('Techli', 'http://techli.com/news', 'h2.post-title a', False),
-    ('TechMeme', 'http://www.techmeme.com', 'div.ii strong a', False),
-)
+SITES = [{
+        'name': 'St. Louis Business Journal', 
+        'url': 'http://www.bizjournals.com/stlouis/news', 
+        'selector': 'li.object_subtype_blog_post h4 a', 
+        'include_base': True
+    }, {
+        'name': 'Reddit', 
+        'url': 'http://www.reddit.com/r/stlouis+programming', 
+        'selector': 'div.thing div.entry a.title', 
+        'include_base': False
+    }, {
+        'name': 'Hacker News', 
+        'url': 'http://news.ycombinator.com', 
+        'selector': 'td.title a', 
+        'include_base': False
+    }, {
+        'name': 'Techli', 
+        'url': 'http://techli.com/news', 
+        'selector': 'h2.post-title a', 
+        'include_base': False
+    }, {
+        'name': 'TechMeme', 
+        'url': 'http://www.techmeme.com', 
+        'selector': 'div.ii strong a', 
+        'include_base': False
+    },
+]
 
-def print_site_links():
-    for (name, url, selector, include_base) in SITE_LINKS:
-        print('\n\n%s\n%s' % (name, '-' * len(name)))
-        res = requests.get(url)
+def get_site_links():
+    site_links = []
+    
+    for site in SITES:
+        site_map = {'name': site['name'], 'links': []}
+        res = requests.get(site['url'])
         doc = html.fromstring(res.text)
-        links = doc.cssselect(selector)
-        base_url = doc.base[:-1] if include_base else ''
+        links = doc.cssselect(site['selector'])
+        base_url = doc.base[:-1] if site['include_base'] else ''
         
         for link in links[0:20]:
-            print '%s:\n  %s%s\n' % (link.text, base_url, link.get('href'))
+            href = base_url + link.get('href')
+            site_map['links'].append({'text': link.text, 'href': href})
+        
+        site_links.append(site_map)
     
+    return site_links
+
+def print_site_links(site_links):
+    for site in site_links:
+        print('\n\n%s\n%s' % (site['name'], '-' * len(site['name'])))
+        for link in site['links']:
+            print '%s:\n  %s\n' % (link['text'], link.get('href'))
+
 if __name__ == '__main__':
-    print_site_links()
+    site_links = get_site_links()
+    print_site_links(site_links)
+
