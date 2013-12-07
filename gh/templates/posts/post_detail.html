@@ -3,6 +3,12 @@
 
 {% block content %}
 
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}        
+{% endif %}
+
 <div id="post-detail">
 <h3><a href="{{ object.url }}">{{ object.title }}</a></h3>
 <p>by <a href="/profiles/{{ object.user.username }}">{{ object.user.username }}</a> {{ object.created|timesince }} ago</p>

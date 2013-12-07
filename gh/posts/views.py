@@ -1,10 +1,11 @@
 import requests
 from BeautifulSoup import BeautifulSoup
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.core.urlresolvers import reverse_lazy
+from django.contrib import messages
 from braces.views import LoginRequiredMixin
 from .forms import PostForm
 from .models import Post
@@ -20,8 +21,16 @@ class PostCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('index')
     
     def form_valid(self, form):
+        posts = Post.objects.filter(url__iexact=form.instance.url)
+        
+        if posts:
+            url = posts.reverse()[0].get_absolute_url()
+            messages.add_message(self.request, messages.INFO, 'This link has already been submitted:')
+            return HttpResponseRedirect(url)
+        
         form.instance.user = self.request.user
         return super(PostCreate, self).form_valid(form)
+    
 
 class PostListView(ListView):
     model = Post
