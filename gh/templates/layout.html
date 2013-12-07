@@ -62,5 +62,14 @@
 
 {% block js %}{% endblock %}
 
+<script type="text/javascript">
+$(function() {    
+    $('.click-disable').click(function() {
+        $(this).addClass('disabled').text($(this).text() + '...');
+    });
+});
+
+</script>
+
 </body>
 </html>

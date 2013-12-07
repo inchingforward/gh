@@ -24,7 +24,7 @@
             {% endif %}
             </table>
             {% comment %}<a class="button" href="{% url 'account_reset_password' %}">Forgot Password?</a>{% endcomment %}
-            <p align="center"><button class="btn btn-primary" type="submit">Log In</button></p>
+            <p align="center"><button id="login_button" class="btn btn-primary clickdisable" type="submit">Log In</button></p>
         </form>
 
         <div class="social-login-divider">
@@ -38,7 +38,7 @@
 
 {% block js %}
 <script type="text/javascript">
-$(function() {
+$(function() {    
     $("#id_login").focus();
 });
 
