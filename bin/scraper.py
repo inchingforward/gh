@@ -44,6 +44,11 @@ SITES = [{
         'url': 'http://www.techmeme.com', 
         'selector': 'div.ii strong a',
         'transformer': lambda base, url: re.sub(r'^/goto/', 'http://', url)
+    }, {
+        'name': 'St. Louis Beacon', 
+        'url': 'https://www.stlbeacon.org/#!/list/AND[CATEGORY[innovation_stl]]',
+        'selector': 'section#innovation_stl_panel h1 a',
+        'transformer': lambda base, url: 'https://www.stlbeacon.org' + url
     },
 ]
 
@@ -72,10 +77,11 @@ def get_site_links():
         for link in links[0:20]:
             href = link.get('href')
             
-            if transformer:
-                href = transformer(base_url, href)
-            
-            site_map['links'].append({'text': link.text, 'href': href})
+            if link.text and href:
+                if transformer:
+                    href = transformer(base_url, href)
+                
+                site_map['links'].append({'text': link.text, 'href': href})
         
         site_links.append(site_map)
     
