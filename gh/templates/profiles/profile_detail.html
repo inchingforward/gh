@@ -68,10 +68,14 @@
             </dl>
             {% endif %}
             
-            {% if object.interested_in_job_opportunities %}<em>{{ object.get_short_name }} is interested in job opportunities.</em>{% endif %}
+            <p><a href="/posts/user/{{ object.user.username }}/">Posts</a> submitted by {{ object.get_short_name }}</p>
+            
+            {% if object.interested_in_job_opportunities %}<p><em>{{ object.get_short_name }} is interested in job opportunities.</em></p>{% endif %}
         </div>
     </div>
 </div>
+
+
 
 {% endblock %}
 

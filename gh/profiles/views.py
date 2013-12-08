@@ -17,8 +17,6 @@ class ProfileUpdateView(LoginRequiredMixin,UpdateView):
     form_class = ProfileForm
     
     def get_object(self):
-        print self.kwargs
-        print self.request.user
         try:
             return Profile.objects.get(user=self.request.user)
         except Profile.DoesNotExist:

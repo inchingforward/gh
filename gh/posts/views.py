@@ -36,6 +36,20 @@ class PostListView(ListView):
     model = Post
     paginate_by = 20
 
+class UserPostListView(ListView):
+    model = Post
+    paginate_by = 20
+    template_name = 'posts/user_post_list.html'
+    
+    def get_queryset(self):
+        return Post.objects.filter(user__username=self.kwargs['username'])
+    
+    def get_context_data(self, **kwargs):
+        context = super(UserPostListView, self).get_context_data(**kwargs)
+        context['username'] = self.kwargs['username']
+        
+        return context
+
 def fetch_url_title(request):
     title = ''
     try:
