@@ -46,9 +46,9 @@ SITES = [{
         'transformer': lambda base, url: re.sub(r'^/goto/', 'http://', url)
     }, {
         'name': 'St. Louis Beacon', 
-        'url': 'https://www.stlbeacon.org/#!/list/AND[CATEGORY[innovation_stl]]',
-        'selector': 'section#innovation_stl_panel h1 a',
-        'transformer': lambda base, url: 'https://www.stlbeacon.org' + url
+        'url': 'http://news.stlpublicradio.org/term/economy-innovation',
+        'selector': 'h2.node-title a',
+        'transformer': lambda base, url: 'http://news.stlpublicradio.org' + url
     },
 ]
 
