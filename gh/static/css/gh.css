@@ -158,6 +158,10 @@ body {
     text-decoration: underline;
 }
 
+.comment_actions a {
+    padding-right: 5px;
+}
+
 .comment_li {
     list-style: none;
     padding-left: 30px;
