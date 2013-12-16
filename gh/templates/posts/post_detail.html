@@ -5,7 +5,7 @@
 
 {% if messages %}
     {% for message in messages %}
-    <div class="alert alert-info">{{ message }}</div>
+        {% if 'dupe-post' in message.tags %}<div class="alert alert-info">{{ message }}</div>{% endif %}
     {% endfor %}        
 {% endif %}
 

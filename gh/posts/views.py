@@ -25,7 +25,8 @@ class PostCreate(LoginRequiredMixin, CreateView):
         
         if posts:
             url = posts.reverse()[0].get_absolute_url()
-            messages.add_message(self.request, messages.INFO, 'This link has already been submitted:')
+            messages.add_message(self.request, messages.INFO, 'This link has already been submitted:', 
+                                 extra_tags='dupe-post')
             return HttpResponseRedirect(url)
         
         form.instance.user = self.request.user
