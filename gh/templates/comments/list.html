@@ -1,4 +1,5 @@
 {% load threadedcomments_tags %}
+{% load markup %}
 
 <div class="comments">
     {% for comment in comment_list|fill_tree|annotate_tree %}{% ifchanged comment.parent_id %}{% else %}</li>{% endifchanged %}{% if not comment.open and not comment.close %}</li>{% endif %}{% if comment.open %}
@@ -7,7 +8,7 @@
             <div class="comment">
                 <div class="comment_info"><a href="/profiles/{{ comment.user.username }}/">{{ comment.user.username }}</a> {{ comment.submit_date|timesince }} ago</div>
                 <div class="comment_text">
-                    {{ comment.comment }}
+                    {{ comment.comment|markdown }}
                 </div>
                 <div class="comment_actions">
                 {% if user.is_authenticated %}
