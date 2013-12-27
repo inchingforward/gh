@@ -66,6 +66,7 @@ def get_site_links():
     
     for site in SITES:
         site_map = {'name': site['name'], 'links': []}
+        print "Getting %s..." % site['name']
         
         res = requests.get(site['url'])
         doc = html.fromstring(res.text)
