@@ -47,7 +47,8 @@ SITES = [{
     }, {
         'name': 'Designer News', 
         'url': 'https://news.layervault.com/stories', 
-        'selector': 'a.StoryUrl' 
+        'selector': 'a.StoryUrl', 
+        'transformer': lambda base, url: re.sub(r'^/stories', 'https://news.layervault.com/stories', url)
     }
 ]
 
