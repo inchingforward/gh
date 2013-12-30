@@ -40,16 +40,16 @@ SITES = [{
         'url': 'http://techli.com/news', 
         'selector': 'h2.post-title a', 
     }, {
-        'name': 'TechMeme', 
-        'url': 'http://www.techmeme.com', 
-        'selector': 'div.ii strong a',
-        'transformer': lambda base, url: re.sub(r'^/goto/', 'http://', url)
-    }, {
         'name': 'St. Louis Beacon', 
         'url': 'http://news.stlpublicradio.org/term/economy-innovation',
         'selector': 'h2.node-title a',
         'transformer': lambda base, url: 'http://news.stlpublicradio.org' + url
-    },
+    }, {
+        'name': 'Designer News', 
+        'url': 'https://news.layervault.com/stories', 
+        'selector': 'a.StoryUrl', 
+        'transformer': lambda base, url: re.sub(r'^/stories', 'https://news.layervault.com/stories', url)
+    }
 ]
 
 def get_site_links():
@@ -67,6 +67,7 @@ def get_site_links():
     
     for site in SITES:
         site_map = {'name': site['name'], 'links': []}
+        print "Getting %s..." % site['name']
         
         res = requests.get(site['url'])
         doc = html.fromstring(res.text)
@@ -78,10 +79,11 @@ def get_site_links():
             href = link.get('href')
             
             if link.text and href:
+                link_text = link.text.strip()
                 if transformer:
                     href = transformer(base_url, href)
                 
-                site_map['links'].append({'text': link.text, 'href': href})
+                site_map['links'].append({'text': link_text, 'href': href})
         
         site_links.append(site_map)
     
