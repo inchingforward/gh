@@ -8,7 +8,7 @@ class WebPage(models.Model):
     prefix = models.TextField(blank=True)
     
     class Meta:
-        ordering = ['-title']
+        ordering = ['title']
     
     def __unicode__(self):
         return self.title
