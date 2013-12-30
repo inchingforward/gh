@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'posts',
     'news',
     'profiles',
+    'sources',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

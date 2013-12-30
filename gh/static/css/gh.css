@@ -242,3 +242,7 @@ table.sign-up, table.log-in {
 .btn-login {
     width: 200px;
 }
+
+#sources-list li {
+    font-size: 12pt;
+}

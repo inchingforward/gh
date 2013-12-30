@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class WebPage(models.model):
+class WebPage(models.Model):
     title = models.TextField()
     url = models.URLField()
     selector = models.TextField()

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h3>Pages</h3>
+
+<div id="sources-list">
+{% for page_link in page_links %}
+    <h4><a href="{{ page_link.page.url }}">{{ page_link.page.title }}</a><h4>
+    
+    <ul>
+    {% for link_info in page_link.links %}
+        <li><a href="{{ link_info.href }}">{{ link_info.text }}</a></li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+</div>
+
+{% endblock %}
