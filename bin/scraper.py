@@ -15,6 +15,7 @@ SITES list of maps contain the following keys:
                  use relative urls or modify a link's url in some way.
 """
 
+from multiprocessing.dummy import Pool
 import re
 import requests
 from lxml import html
@@ -52,7 +53,7 @@ SITES = [{
     }
 ]
 
-def get_site_links():
+def get_site_links(site):
     """Iterates through SITES and creates a list of maps with the following
     corresponding keys:
     
@@ -63,31 +64,26 @@ def get_site_links():
     text, and an 'href' which contains a fully-qualified url.
     """
     
-    site_links = []
+    site_map = {'name': site['name'], 'links': []}
+    print "Getting %s..." % site['name']
     
-    for site in SITES:
-        site_map = {'name': site['name'], 'links': []}
-        print "Getting %s..." % site['name']
+    res = requests.get(site['url'])
+    doc = html.fromstring(res.text)
+    links = doc.cssselect(site['selector'])
+    transformer = site.get('transformer', None)
+    base_url = doc.base or site['url']
+    
+    for link in links[0:20]:
+        href = link.get('href')
         
-        res = requests.get(site['url'])
-        doc = html.fromstring(res.text)
-        links = doc.cssselect(site['selector'])
-        transformer = site.get('transformer', None)
-        base_url = doc.base or site['url']
-        
-        for link in links[0:20]:
-            href = link.get('href')
+        if link.text and href:
+            link_text = link.text.strip()
+            if transformer:
+                href = transformer(base_url, href)
             
-            if link.text and href:
-                link_text = link.text.strip()
-                if transformer:
-                    href = transformer(base_url, href)
-                
-                site_map['links'].append({'text': link_text, 'href': href})
-        
-        site_links.append(site_map)
+            site_map['links'].append({'text': link_text, 'href': href})
     
-    return site_links
+    return site_map
 
 def print_site_links(site_links):
     """Prints a list of site_links maps."""
@@ -98,6 +94,10 @@ def print_site_links(site_links):
             print '%s:\n  %s\n' % (link['text'], link.get('href'))
 
 if __name__ == '__main__':
-    site_links = get_site_links()
+    pool = Pool(len(SITES))
+    site_links = pool.map(get_site_links, SITES)
+    pool.close()
+    pool.join()
+    
     print_site_links(site_links)
 
