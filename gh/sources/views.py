@@ -1,3 +1,4 @@
+from multiprocessing import Pool
 import requests
 from lxml import html
 from django.contrib.auth.decorators import user_passes_test
@@ -9,16 +10,16 @@ from .models import WebPage
 @user_passes_test(lambda u: u.is_staff, login_url='/accounts/login/')
 def get_pages(request):
     pages = WebPage.objects.all()
-    page_links = []
     
-    for page in pages:
-        page_map = {'page': page, 'links': []}
-        get_links(page, page_map)
-        page_links.append(page_map)
-        
+    pool = Pool(10)
+    page_links = pool.map(get_links, pages)
+    pool.close()
+    pool.join()
+    
     return render(request, "sources/pages.html", {'page_links': page_links})
 
-def get_links(page, page_map):
+def get_links(page):
+    page_map = {'page': page, 'links': []}
     res = requests.get(page.url)
     doc = html.fromstring(res.text)
     links = doc.cssselect(page.selector)
@@ -33,3 +34,6 @@ def get_links(page, page_map):
                 href = page.url + href
             
             page_map['links'].append({'text': link_text, 'href': href})
+    
+    return page_map
+
