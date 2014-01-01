@@ -9,7 +9,7 @@
     
     <ul>
     {% for link_info in page_link.links %}
-        <li><a href="{{ link_info.href }}">{{ link_info.text }}</a></li>
+        <li><a class="btn btn-primary btn-xs" href="{% url 'post-add' %}?url={{ link_info.href|urlencode }}&title={{ link_info.text|urlencode }}" target="_blank">Add</a> <a href="{{ link_info.href }}">{{ link_info.text }}</a></li>
     {% endfor %}
     </ul>
 {% endfor %}

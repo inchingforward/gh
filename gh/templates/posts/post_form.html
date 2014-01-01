@@ -12,14 +12,14 @@
 <tr>
     <th><label for="id_url">Url:</label></th>
     <td>
-        <input id="id_url" maxlength="200" name="url" type="text" class="form-control" placeholder="URL" />
+        <input id="id_url" maxlength="200" name="url" type="text" class="form-control" placeholder="URL" value="{{ request.GET.url }}"/>
         {{ form.url.errors }}
     </td>
 </tr>
 <tr>
     <th><label for="id_title">Title:</label></th>
     <td nowrap="nowrap">
-        <input id="id_title" name="title" type="text" class="form-control" placeholder="Enter a title or click the Fetch button" />
+        <input id="id_title" name="title" type="text" class="form-control" placeholder="Enter a title or click the Fetch button" value="{{ request.GET.title }}" />
         <button type="button" id="fetch_button" class="btn btn-default" data-loading-text="Fetching..." onClick="fetchTitle();">Fetch</button>
          {{ form.tile.errors }}
     </td>

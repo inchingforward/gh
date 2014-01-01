@@ -246,3 +246,10 @@ table.sign-up, table.log-in {
 #sources-list li {
     font-size: 12pt;
 }
+
+#sources-list ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
