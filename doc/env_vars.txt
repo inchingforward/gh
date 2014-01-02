@@ -8,3 +8,8 @@ export GH_DATABASE_URL='yourdburl'
 
 export GH_ADMIN_NAME='Admin Email'
 export GH_ADMIN_EMAIL='admin@youremail.com'
+
+export GH_TWITTER_CONSUMER_KEY='consumer_key'
+export GH_TWITTER_CONSUMER_SECRET='consumer_secret'
+export GH_TWITTER_ACCESS_TOKEN='twitter_access_token'
+export GH_TWITTER_ACCESS_TOKEN_SECRET='twitter_access_token_secret'
