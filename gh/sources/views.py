@@ -30,8 +30,9 @@ def get_links(page):
         
         if link.text and href:
             link_text = link.text.strip()
+            print href
             if href.startswith("/"):
-                href = page.url + href
+                href = page.prefix + href
             
             page_map['links'].append({'text': link_text, 'href': href})
     
