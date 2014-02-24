@@ -11,6 +11,8 @@ from .forms import PostForm
 from .models import Post
 
 
+PAGINATE_BY = 20
+
 class PostDetailView(DetailView):
     model = Post
 
