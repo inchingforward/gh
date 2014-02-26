@@ -1,6 +1,8 @@
 from django.test import TestCase
+from django.test import RequestFactory
 from django.contrib.auth.models import User
 from .models import Profile
+from .views import ProfileDetailView
 
 
 class ProfileModelTest(TestCase):
@@ -57,8 +59,25 @@ class ProfileModelTest(TestCase):
 class ProfileDetailViewTest(TestCase):
     def setUp(self):
         self.user = User.objects.create(username='testing', first_name='Atticus', last_name='Finch')
+        self.profile = Profile.objects.create(user=self.user)
     
-    def sanity_check(self):
-        response = self.client.get('/users/testing')
+    def test_profile_detail_contains_full_name(self):
+        response = self.client.get('/profiles/testing/')
         
         self.assertContains(response, 'Atticus Finch')
+    
+    def test_edit_button_present_for_users_own_profile(self):
+        request = RequestFactory().get('/profiles/testing/')
+        request.user = self.user
+        
+        response = ProfileDetailView.as_view()(request, username=self.user.username)
+        
+        self.assertContains(response, 'Edit')
+    
+    def test_edit_button_not_present_for_other_users_profile(self):
+        request = RequestFactory().get('/profiles/testing/')
+        
+        response = ProfileDetailView.as_view()(request, username=self.user.username)
+        
+        self.assertNotContains(response, 'Edit')
+
