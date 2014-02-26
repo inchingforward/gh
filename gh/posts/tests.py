@@ -1,35 +1,30 @@
-from django.test import LiveServerTestCase
 from django.test import TestCase
 from django.contrib.auth.models import User
-from selenium import webdriver
 import views
 from .models import Post
 
 
-# Functional Tests
-class HomePageTest(LiveServerTestCase):
+class PostListViewTest(TestCase):
     def setUp(self):
-        self.browser = webdriver.Firefox()
-        self.browser.implicitly_wait(3)
-        self.browser.get(self.live_server_url)
-        self.user = User.objects.create(username='test')
+        self.user = User.objects.create(username='testing')
+        
+    def test_post_list_view_contains_posts(self):
+        Post.objects.create(title='Test Post', user=self.user)
+        
+        response = self.client.get('/posts/')
+        
+        self.assertContains(response, 'Test Post')
     
-    def tearDown(self):
-        self.browser.quit()
+    def test_post_list_view_does_not_contain_hidden_posts(self):
+        Post.objects.create(title='Visible Post', user=self.user)
+        Post.objects.create(title='Hidden Post', user=self.user, visible=False)
+        
+        response = self.client.get('/posts/')
+        
+        self.assertContains(response, 'Visible Post')
+        self.assertNotContains(response, 'Hidden Post')
     
-    def test_home_page_sanity_check(self):
-        self.assertEqual("Gateway Hackers", self.browser.title)
-    
-    def test_home_page_has_no_posts(self):
-        posts = self.browser.find_elements_by_css_selector('#post-list li')
-        self.assertEqual(len(posts), 0)
-
-    def test_home_page_has_anonymous_user_links(self):
-        self.assertGreaterEqual(len(self.browser.find_elements_by_link_text('Log in')), 1)
-        self.assertGreaterEqual(len(self.browser.find_elements_by_link_text('Sign up')), 1)
-        self.assertGreaterEqual(len(self.browser.find_elements_by_link_text('About')), 1)
-    
-    def test_home_page_with_posts(self):
+    def test_post_list_view_paginates(self):
         for x in range(30):
             item = Post()
             item.title = 'Title %s' % x
@@ -37,5 +32,14 @@ class HomePageTest(LiveServerTestCase):
             item.user = self.user
             item.save()
         
-        self.browser.get(self.live_server_url)
-        self.assertEqual(len(self.browser.find_elements_by_css_selector('#post-list li')), views.PAGINATE_BY)
+        response = self.client.get('/posts/')
+        
+        self.assertContains(response, 'Title 29')
+        self.assertContains(response, 'Title 10')
+        self.assertNotContains(response, 'Title 9')
+        
+        response = self.client.get('/posts/?page=2')
+        
+        self.assertContains(response, 'Title 9')
+        self.assertContains(response, 'Title 0')
+

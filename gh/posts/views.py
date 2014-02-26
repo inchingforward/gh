@@ -38,6 +38,9 @@ class PostCreate(LoginRequiredMixin, CreateView):
 class PostListView(ListView):
     model = Post
     paginate_by = 20
+    
+    def get_queryset(self):
+        return Post.objects.filter(visible=True)
 
 class UserPostListView(ListView):
     model = Post
