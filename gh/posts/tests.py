@@ -43,3 +43,28 @@ class PostListViewTest(TestCase):
         self.assertContains(response, 'Title 9')
         self.assertContains(response, 'Title 0')
 
+class PostDetailView(TestCase):
+    def test_post_detail_view_sanity_test(self):
+        user = User.objects.create(username='testing')
+        
+        post = Post.objects.create(title='Test Title', details='Test Details', user=user)
+        
+        response = self.client.get('/posts/%s/' % post.id)
+        
+        self.assertContains(response, 'Test Title')
+
+class UserPostListViewTest(TestCase):
+    def test_user_post_list_only_contains_posts_for_given_user(self):
+        user1 = User.objects.create(username='user1')
+        user2 = User.objects.create(username='user2')
+        
+        Post.objects.create(title='Test1', user=user1)
+        Post.objects.create(title='Test2', user=user1)
+        Post.objects.create(title='Test3', user=user2)
+        
+        response = self.client.get('/posts/user/user1/')
+        
+        self.assertContains(response, 'Test1')
+        self.assertContains(response, 'Test2')
+        self.assertNotContains(response, 'Test3')
+
