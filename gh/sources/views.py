@@ -11,10 +11,12 @@ from .models import WebPage
 def get_pages(request):
     pages = WebPage.objects.all()
     
-    pool = Pool(10)
-    page_links = pool.map(get_links, pages)
-    pool.close()
-    pool.join()
+    page_links = {}
+    if pages:
+        pool = Pool(10)
+        page_links = pool.map(get_links, pages)
+        pool.close()
+        pool.join()
     
     return render(request, "sources/pages.html", {'page_links': page_links})
 

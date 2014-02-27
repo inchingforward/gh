@@ -1,16 +1,19 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
+from django.contrib.auth.models import User
+from .views import get_pages
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class GetPagesViewTest(TestCase):
+    def test_get_pages_returns_404_for_non_staff(self):
+        response = self.client.get('/sources/')
+        
+        self.assertEqual(response.status_code, 404)
+    
+    def test_get_pages_returns_200_for_staff(self):
+        request = RequestFactory().get('/sources/')
+        request.user = User.objects.create(username='testing', is_staff=True)
+        
+        response = get_pages(request)
+        
+        self.assertEqual(response.status_code, 200)
+
