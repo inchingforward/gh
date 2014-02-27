@@ -48,7 +48,7 @@ class UserPostListView(ListView):
     template_name = 'posts/user_post_list.html'
     
     def get_queryset(self):
-        return Post.objects.filter(user__username=self.kwargs['username'])
+        return Post.objects.filter(user__username=self.kwargs['username']).filter(visible=True)
     
     def get_context_data(self, **kwargs):
         context = super(UserPostListView, self).get_context_data(**kwargs)

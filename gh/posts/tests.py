@@ -67,4 +67,17 @@ class UserPostListViewTest(TestCase):
         self.assertContains(response, 'Test1')
         self.assertContains(response, 'Test2')
         self.assertNotContains(response, 'Test3')
+    
+    def test_user_post_list_only_contains_visible_posts_for_user(self):
+        user = User.objects.create(username='testing')
+        
+        Post.objects.create(title='Visible Test', user=user)
+        Post.objects.create(title='Invisible Test', visible=False, user=user)
+        
+        print User.objects.all()
+        
+        response = self.client.get('/posts/user/testing/')
+        
+        self.assertContains(response, 'Visible Test')
+        self.assertNotContains(response, 'Invisible Test')        
 
