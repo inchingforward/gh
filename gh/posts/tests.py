@@ -74,8 +74,6 @@ class UserPostListViewTest(TestCase):
         Post.objects.create(title='Visible Test', user=user)
         Post.objects.create(title='Invisible Test', visible=False, user=user)
         
-        print User.objects.all()
-        
         response = self.client.get('/posts/user/testing/')
         
         self.assertContains(response, 'Visible Test')
