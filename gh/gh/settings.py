@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'news',
     'profiles',
     'sources',
+    'groups',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
