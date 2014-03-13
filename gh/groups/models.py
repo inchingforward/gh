@@ -9,7 +9,7 @@ class Meetup(models.Model):
     group_urlname = models.TextField()
     details = models.TextField(blank=True)
     next_event_json = models.TextField(blank=True)
-    next_event_updated_date = models.DateTimeField(null=True)
+    next_event_updated_date = models.DateTimeField(blank=True, null=True)
     
     def get_next_event(self):
         if self.next_event_json:
