@@ -43,18 +43,18 @@ EVENT_JSON = """
 }
 """
 
-class GroupsViewTest(TestCase):
+class MeetupsViewTest(TestCase):
     def test_groups_view_sanity(self):
-        response = self.client.get('/groups/')
+        response = self.client.get('/groups/meetups/')
         self.assertEqual(response.status_code, 200)
     
     def test_groups_view_contains_meetups(self):
-        response = self.client.get('/groups/')
+        response = self.client.get('/groups/meetups/')
         self.assertContains(response, 'Meetups')
     
     def test_groups_view_contains_stl_python(self):
         Meetup.objects.create(name='Test Meetup')
-        response = self.client.get('/groups/')
+        response = self.client.get('/groups/meetups/')
         self.assertContains(response, 'Test Meetup')
     
     def test_meetup_next_event(self):

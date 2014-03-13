@@ -2,6 +2,6 @@ from django.shortcuts import render
 from .models import Meetup
 
 
-def index(request):
+def meetups(request):
     meetups = Meetup.objects.all()
-    return render(request, 'groups/index.html', {'meetups': meetups})
+    return render(request, 'groups/meetups.html', {'meetups': meetups})
