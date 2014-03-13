@@ -2,7 +2,12 @@
 
 {% block content %}
 
-<p>Coming soon...</p>
+<h2>Meetups</h2>
+{% for meetup in meetups %}
+<h3><a href="{{ meetup.url }}">{{ meetup.name }}</a></h3>
+<p>{{ meetup.get_next_event_time|date:"D M d P" }}
+    {{ meetup.name }}</p>
+{% endfor %}
 
 {% if GOOGLE_ANALYTICS_ID %}
     {% include "analytics.html" %}
