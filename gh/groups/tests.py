@@ -44,15 +44,15 @@ EVENT_JSON = """
 """
 
 class MeetupsViewTest(TestCase):
-    def test_groups_view_sanity(self):
+    def test_meetups_view_sanity(self):
         response = self.client.get('/groups/meetups/')
         self.assertEqual(response.status_code, 200)
     
-    def test_groups_view_contains_meetups(self):
+    def test_meetups_view_contains_meetups(self):
         response = self.client.get('/groups/meetups/')
         self.assertContains(response, 'Meetups')
     
-    def test_groups_view_contains_stl_python(self):
+    def test_meetups_view_contains_stl_python(self):
         Meetup.objects.create(name='Test Meetup')
         response = self.client.get('/groups/meetups/')
         self.assertContains(response, 'Test Meetup')
