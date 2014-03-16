@@ -12,7 +12,10 @@ class Meetup(models.Model):
     next_event_updated_date = models.DateTimeField(blank=True, null=True)
         
     def get_next_event(self):
-        return self.meetupevent_set.all()[0]
+        events = self.meetupevent_set.all()
+        if events:
+            return self.meetupevent_set.all()[0]
+        return None
     
     class Meta:
         ordering = ['name']
