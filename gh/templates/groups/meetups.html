@@ -11,6 +11,7 @@
     <th>Event</th>
     <th>When</th>
     <th>Where</th>
+    <th>Map</th>
 </tr>
 
 {% for meetup in meetups %}
@@ -18,8 +19,9 @@
 <tr>
     <td><a href="{{ meetup.url }}">{{ meetup.name }}</a></td>
     <td><a href="{{ event.url }}">{{ event.name }}</a></td>
-    <td nowrap="nowrap">{{ event.event_date|date:"D, M d, P" }}</td>
-    <td>{% if event %}<a href="https://maps.google.com/?q={{ event.address_1 }}, {{ event.city }}, {{ event.state }}, {{ event.zip }}"><i class="fa fa-map-marker"></i></a> {{ event.venue_name }}{% endif %}</td>
+    <td nowrap="nowrap">{{ event.event_date|date:"M d h:i a" }}</td>
+    <td>{{ event.venue_name }}</td>
+    <td>{% if event %}<a href="https://maps.google.com/?q={{ event.address_1 }}, {{ event.city }}, {{ event.state }}, {{ event.zip }}"><i class="fa fa-map-marker"></i></a>{% endif %}</td>
 </tr>
 {% endwith %}
 {% endfor %}
