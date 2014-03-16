@@ -19,7 +19,7 @@
     <td><a href="{{ meetup.url }}">{{ meetup.name }}</a></td>
     <td><a href="{{ event.url }}">{{ event.name }}</a></td>
     <td>{{ event.event_date|date:"D, M d, P" }}</td>
-    <td>{{ event.venue_name }} <a href="https://maps.google.com/?q={{ event.address_1 }}, {{ event.city }}, {{ event.state }}, {{ event.zip }}"><i class="fa fa-map-marker"></i></a></td>
+    <td>{% if event %}{{ event.venue_name }} <a href="https://maps.google.com/?q={{ event.address_1 }}, {{ event.city }}, {{ event.state }}, {{ event.zip }}"><i class="fa fa-map-marker"></i></a>{% endif %}</td>
 </tr>
 {% endwith %}
 {% endfor %}
