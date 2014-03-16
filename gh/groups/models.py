@@ -10,16 +10,7 @@ class Meetup(models.Model):
     details = models.TextField(blank=True)
     next_event_json = models.TextField(blank=True)
     next_event_updated_date = models.DateTimeField(blank=True, null=True)
-    
-    def get_next_event(self):
-        if self.next_event_json:
-            try:
-                return json.loads(self.next_event_json)['results'][0]
-            except:
-                pass
         
-        return {}
-    
     def get_next_event_time(self):
         millis = self.get_next_event()['time']
         
@@ -27,6 +18,9 @@ class Meetup(models.Model):
             return datetime.datetime.fromtimestamp(millis/1000.0)
         
         return None
+    
+    def get_next_event(self):
+        return self.meetupevent_set.all()[0]
     
     class Meta:
         ordering = ['name']

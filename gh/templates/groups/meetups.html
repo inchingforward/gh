@@ -2,10 +2,31 @@
 
 {% block content %}
 
-<h2>Meetups</h2>
+<h2>Upcoming Meetups</h2>
+
+<div id="meetup-event-table" class="table-responsive">
+<table class="table table-striped table-hover table-condensed">
+<tr>
+    <th>Group</th>
+    <th>Event</th>
+    <th>When</th>
+    <th>Where</th>
+</tr>
+
 {% for meetup in meetups %}
-<h3><a href="{{ meetup.url }}">{{ meetup.name }}</a></h3>
+{% with event=meetup.get_next_event %}
+<tr>
+    <td><a href="{{ meetup.url }}">{{ meetup.name }}</a></td>
+    <td><a href="{{ event.url }}">{{ event.name }}</a></td>
+    <td>{{ event.event_date|date:"D, M d, P" }}</td>
+    <td>{{ event.venue_name }} <a href="https://maps.google.com/?q={{ event.address_1 }}, {{ event.city }}, {{ event.state }}, {{ event.zip }}"><i class="fa fa-map-marker"></i></a></td>
+</tr>
+{% endwith %}
 {% endfor %}
+</table>
+</div>
+
+<p>Missing a Meetup?  <a href="mailto:contact@gatewayhackers.com?subject=Missing%20Meetup">Let us know.</a></p>
 
 {% if GOOGLE_ANALYTICS_ID %}
     {% include "analytics.html" %}

@@ -253,3 +253,7 @@ table.sign-up, table.log-in {
     padding-left: 0;
 }
 
+#meetup-event-table {
+    margin-top: 30px;
+}
+
