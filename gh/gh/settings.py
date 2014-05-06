@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'profiles',
     'sources',
     'groups',
+    'coworking',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

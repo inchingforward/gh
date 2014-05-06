@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if object_list %}
+    <div id="post-list">
+        <ul>
+            {% for space in object_list %}
+                <li>
+                    <h1><a href="{{ space.url }}">{{ space.name }}</a> 
+                    <h2>{{ space.address }}</h2>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+<h3>Nothing yet</h3>
+{% endif %}
+
+{% if GOOGLE_ANALYTICS_ID %}
+    {% include "analytics.html" %}
+{% endif %}
+
+{% endblock %}
