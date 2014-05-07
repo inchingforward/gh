@@ -6,6 +6,7 @@ class CoworkingSpace(models.Model):
     address = models.TextField()
     details = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    general_area = models.TextField(blank=True)
     
     class Meta:
         ordering = ['name']

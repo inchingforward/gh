@@ -1,21 +1,34 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<h2>St. Louis Coworking Spaces</h2>
+
 
 {% if object_list %}
-    <div id="post-list">
-        <ul>
-            {% for space in object_list %}
-                <li>
-                    <h1><a href="{{ space.url }}">{{ space.name }}</a> 
-                    <h2>{{ space.address }}</h2>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+<div id="meetup-event-table" class="table-responsive">
+<table class="table table-striped table-hover table-condensed">
+<tr>
+    <th>Name</th>
+    <th>Area</th>
+    <th>Map</th>
+    <th>Address</th>
+</tr>
+
+{% for space in object_list %}
+<tr>
+    <td><a href="{{ space.name }}">{{ space.name }}</a></td>
+    <td>{{ space.general_area }}</td>
+    <td><a href="https://maps.google.com/?q={{ space.address }}"><i class="fa fa-map-marker"></i></a></td>
+    <td nowrap="nowrap">{{ space.address }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
 {% else %}
 <h3>Nothing yet</h3>
 {% endif %}
+
+<p>Are we missing one?  <a href="mailto:contact@gatewayhackers.com?subject=Missing%20Coworking">Let us know</a>.</p>
 
 {% if GOOGLE_ANALYTICS_ID %}
     {% include "analytics.html" %}
