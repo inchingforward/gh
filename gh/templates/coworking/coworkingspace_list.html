@@ -16,7 +16,7 @@
 
 {% for space in object_list %}
 <tr>
-    <td><a href="{{ space.name }}">{{ space.name }}</a></td>
+    <td><a href="{{ space.url }}">{{ space.name }}</a></td>
     <td>{{ space.general_area }}</td>
     <td><a href="https://maps.google.com/?q={{ space.address }}"><i class="fa fa-map-marker"></i></a></td>
     <td nowrap="nowrap">{{ space.address }}</td>
